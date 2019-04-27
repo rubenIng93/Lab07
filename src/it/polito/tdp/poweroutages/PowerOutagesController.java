@@ -3,7 +3,9 @@ package it.polito.tdp.poweroutages;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import it.polito.tdp.poweroutages.db.PowerOutageDAO;
 import it.polito.tdp.poweroutages.model.Model;
+import it.polito.tdp.poweroutages.model.Nerc;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -22,7 +24,7 @@ public class PowerOutagesController {
     private URL location;
 
     @FXML
-    private ChoiceBox<?> selectNERC;
+    private ChoiceBox<Nerc> selectNERC;
 
     @FXML
     private TextField txtYears;
@@ -54,5 +56,8 @@ public class PowerOutagesController {
     
     public void setModel(Model model) {
     	this.model = model;
+    	for(Nerc n : model.getNercList()) {
+    		selectNERC.getItems().addAll(n);
+    	}
     }
 }
